@@ -1,12 +1,9 @@
 #pragma once
-
 #include "Control.h"
-
 
 class ComboBox : public Control {
 
 private:
-
 	vector<string> options;
 	size_t selected;
 	bool isOpened = false;

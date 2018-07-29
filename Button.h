@@ -1,24 +1,19 @@
 #pragma once
 #include "Control.h"
 
-
 class Button;
 
-struct MouseListener
-{
+struct MouseListener{
 	virtual void MousePressed(Button &b, int x, int y, bool isLeft) = 0;
 };
-
 
 class Button : public Control {
 
 private:
-
 	string value;
 	MouseListener* listener;
 
 public:
-
 	Button(int);
 	void SetValue(string value)					{ this->value = value; }			//set button text
 	string GetValue()							{ return this->value; }				//get button text

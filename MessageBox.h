@@ -1,17 +1,13 @@
 #pragma once
-
 #include "Control.h"
 #include "Button.h"
-
 
 class Messagebox : public Control {
 
 private:
-
 	string title = "";
 	string text = "";
 	vector <Button*> buttons;
-
 
 public:
 	Messagebox(int, int);
