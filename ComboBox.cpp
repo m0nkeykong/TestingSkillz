@@ -4,10 +4,10 @@
 using namespace std;
 
 //C'tor
-ComboBox::ComboBox(int _width, vector<string> _options) {
-	this->width = _width;
+ComboBox::ComboBox(int width, vector<string> options) {
+	this->width = width;
 	this->height = 1;
-	this->options = _options;
+	this->options = options;
 	this->showed = true;
 }
 
@@ -31,7 +31,6 @@ void ComboBox::draw(Graphics g, int i, int j, size_t p) {
 
 	drawBackground();
 
-
 	switch (this->isOpened) {
 	case false:	//combobox closed
 
@@ -49,7 +48,7 @@ void ComboBox::draw(Graphics g, int i, int j, size_t p) {
 
 		graphics.write(i + 1, j, this->options[this->GetSelectedIndex()]); //write the text of selected option 
 
-		for (int k = 0; k < options.size(); k++) {
+		for (int k = 0; k < options.size(); ++k) {
 
 			//handle the graphics of the selected option
 			if (k == GetSelectedIndex()) {
@@ -71,19 +70,17 @@ void ComboBox::draw(Graphics g, int i, int j, size_t p) {
 void ComboBox::keyDown(int keyCode, char character) {
 	int position = this->getTop() + this->GetSelectedIndex() + 1;
 	int index = this->GetSelectedIndex();
-	int index_before = index;
+	int iBefore = index;
 	int c;
 	while (1) {
 		c = getchar();
 
 		if (c == VK_UP) {
 
-			if (position <= this->getTop() + 1) {
-
-			}
+			if (position <= this->getTop() + 1) {}
 			else {
-				position--;
-				index--;
+				--position;
+				--index;
 			}
 
 		}
@@ -94,8 +91,8 @@ void ComboBox::keyDown(int keyCode, char character) {
 
 			}
 			else {
-				position++;
-				index++;
+				++position;
+				++index;
 			}
 		}
 		if (c == VK_TAB || c == VK_RETURN) {
@@ -104,7 +101,7 @@ void ComboBox::keyDown(int keyCode, char character) {
 	}
 
 	this->SetSelectedIndex(index);
-	if (index != index_before)
+	if (index != iBefore)
 		this->height -= options.size();
 	this->isOpened = false;
 }
@@ -122,7 +119,7 @@ void ComboBox::mousePressed(int x, int y, DWORD button) {
 		this->isOpened = true;
 		break;
 	case true:
-		for (int k = 0; k < options.size(); k++) {
+		for (int k = 0; k < options.size(); ++k) {
 			if (y == top + k + 1) {
 				this->selected = k;
 				this->height -= options.size();

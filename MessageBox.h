@@ -14,15 +14,15 @@ private:
 
 
 public:
-	Messagebox(int _width, int _height);
-	void SetTitle(string _title);
+	Messagebox(int, int);
+	void SetTitle(string);
 	string GetTitle();
-	void SetText(string _text);
+	void SetText(string);
 	string GetText();
 	bool canGetFocus();
-	void draw(Graphics g, int i, int j, size_t p);
-	void keyDown(int keyCode, char character);
-	void mousePressed(int x, int y, DWORD button);
-	void addButton(Button &_button, int top, int left);
+	void draw(Graphics, int, int, size_t);
+	void keyDown(int, char) {}
+	void mousePressed(int, int, DWORD);
+	void addButton(Button&, int, int);
 };
 

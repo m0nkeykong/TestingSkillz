@@ -11,16 +11,13 @@ private:
 	size_t selected;
 	bool isOpened = false;
 
-
-
-
 public:
-	ComboBox(int width, vector<string> options);
+	ComboBox(int, vector<string>);
 	size_t GetSelectedIndex();
-	void SetSelectedIndex(size_t index);
-	virtual void draw(Graphics g, int i, int j, size_t p);
+	void SetSelectedIndex(size_t);
+	virtual void draw(Graphics, int, int, size_t);
 	virtual bool canGetFocus();
-	virtual void keyDown(int keyCode, char character);
-	virtual void mousePressed(int x, int y, DWORD button);
+	virtual void keyDown(int, char);
+	virtual void mousePressed(int, int, DWORD);
 
 };
