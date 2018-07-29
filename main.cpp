@@ -1,4 +1,4 @@
-// Authors: Haim Elbaz ~ Roni Polisanov ~ Reut Leib ~ Yaniv Yona
+// Authors: Haim Elbaz ~ Roni Polisanov ~ Reut Leib
 #include <iostream>
 #include "Control.h"
 #include "Graphics.h"
