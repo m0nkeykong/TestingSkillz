@@ -1,8 +1,8 @@
 #include "Button.h"
 
 //button C'tor
-Button::Button(int _width) {
-	this->width = _width;
+Button::Button(int width) {
+	this->width = width;
 	this->height = 1;
 	this->border = BorderType::Single;
 	this->showed = true;
@@ -12,8 +12,8 @@ Button::Button(int _width) {
 }
 
 //set button text
-void Button::SetValue(string _value) {
-	this->value = _value;
+void Button::SetValue(string value) {
+	this->value = value;
 }
 
 //get button text
@@ -36,23 +36,15 @@ void Button::draw(Graphics g, int i, int j, size_t p) {
 }
 
 void Button::keyDown(int keyCode, char character) {
-
 	this->graphics.clearScreen();
-
-
-
 }
 
-void Button::mousePressed(int x, int y, DWORD button) {
-
-
-	listener->MousePressed(*this, x, y, true);
-
-
+void Button::mousePressed(int xPos, int yPos, DWORD button) {
+	listener->MousePressed(*this, xPos, yPos, true);
 }
 
 
-void Button::AddListener(MouseListener &_listener) {
-	this->listener = &_listener;
+void Button::AddListener(MouseListener &listener) {
+	this->listener = &listener;
 }
 

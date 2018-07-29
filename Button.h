@@ -19,13 +19,13 @@ private:
 
 public:
 
-	Button(int _width);
-	void SetValue(string _value);
+	Button(int);
+	void SetValue(string);
 	string GetValue();
 	bool canGetFocus();
-	void draw(Graphics g, int i, int j, size_t p);
-	void keyDown(int keyCode, char character);
-	void mousePressed(int x, int y, DWORD button);
-	void AddListener(MouseListener &listener);
+	void draw(Graphics, int, int, size_t);
+	void keyDown(int, char);
+	void mousePressed(int, int, DWORD);
+	void AddListener(MouseListener&);
 
 };
