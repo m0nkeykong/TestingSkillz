@@ -18,4 +18,5 @@ public:
 	bool canGetFocus();
 	void keyDown(int keyCode, char character);
 	void mousePressed(int x, int y, DWORD button);
+// HELLO
 };
