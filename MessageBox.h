@@ -15,11 +15,11 @@ private:
 
 public:
 	Messagebox(int, int);
-	void SetTitle(string);
-	string GetTitle();
-	void SetText(string);
-	string GetText();
-	bool canGetFocus();
+	void SetTitle(string title)	{ this->title = title; }
+	string GetTitle()			{ return this->title; }
+	void SetText(string text)	{ this->text = text; }
+	string GetText()			{ return this->text; }
+	bool canGetFocus()			{ return false; }		//no focus according to task definition
 	void draw(Graphics, int, int, size_t);
 	void keyDown(int, char) {}
 	void mousePressed(int, int, DWORD);

@@ -13,10 +13,10 @@ private:
 
 public:
 	ComboBox(int, vector<string>);
-	size_t GetSelectedIndex();
-	void SetSelectedIndex(size_t);
+	size_t GetSelectedIndex()			{ return this->selected; }
+	void SetSelectedIndex(size_t index) { this->selected = index; }
+	virtual bool canGetFocus()			{ return true; }	//can be focused according to project's definition
 	virtual void draw(Graphics, int, int, size_t);
-	virtual bool canGetFocus();
 	virtual void keyDown(int, char);
 	virtual void mousePressed(int, int, DWORD);
 
