@@ -20,12 +20,11 @@ private:
 public:
 
 	Button(int);
-	void SetValue(string);
-	string GetValue();
-	bool canGetFocus();
+	void SetValue(string value)					{ this->value = value; }			//set button text
+	string GetValue()							{ return this->value; }				//get button text
+	bool canGetFocus()							{ return false; }					//buttons can't be focused by project's demand
+	void keyDown(int, char)						{ this->graphics.clearScreen(); }
+	void AddListener(MouseListener &listener)	{ this->listener = &listener; }
+	void mousePressed(int xPos, int yPos, DWORD button) { listener->MousePressed(*this, xPos, yPos, true); }
 	void draw(Graphics, int, int, size_t);
-	void keyDown(int, char);
-	void mousePressed(int, int, DWORD);
-	void AddListener(MouseListener&);
-
 };
