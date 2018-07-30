@@ -1,14 +1,16 @@
 #pragma once
+
 #include <string>
 #include <Windows.h>
 
 using namespace std;
+
 enum class Color { Black, Blue, Green, Red, Cyan, Purple, Orange, White };
 
-class Graphics {
-
+class Graphics 
+{
 public:
-	Graphics(DWORD stdHandle = STD_OUTPUT_HANDLE);	//screen ctor
+	Graphics(DWORD stdHandle = STD_OUTPUT_HANDLE);
 	void clearScreen();
 	void moveTo(int x, int y);
 	void setBackground(Color color);
@@ -19,8 +21,9 @@ public:
 	void write(int x, int y, wstring s);
 	void setCursorVisibility(bool isVisible);
 private:
-	HANDLE _console; //console handler
+	HANDLE _console;
 	Color _background, _foreground;
+
 	void updateConsoleAttributes();
 };
 

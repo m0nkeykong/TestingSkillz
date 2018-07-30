@@ -19,8 +19,6 @@ void RadioList::draw(Graphics g, int i, int j, size_t p) {
 	graphics.setForeground(this->foreground);
 
 	for (int k = 0; k < this->options.size(); k++) {
-
-
 		if (this->checked == k) {
 			graphics.write(i, j + k, "[X]");	//mark selected option
 			graphics.write(i + 7, j + k, this->options[k]);
@@ -61,21 +59,14 @@ void  RadioList::keyDown(int keyCode, char character) {
 				}
 				break;
 			}
-
 			break;
 		} while (c != VK_TAB);
-
 	}
-
 }
 
 void RadioList::mousePressed(int x, int y, DWORD button) {
-
-	//change selected option
-	for (int i = 0; i < this->getHeight(); i++)
-	{
+	for (int i = 0; i < this->getHeight(); i++){
 		if (x == (this->getLeft() + 1) && y == (this->getTop() + i)) {
-
 			graphics.moveTo(this->getLeft() + 1, this->getTop() + i);
 			if (this->checked != i) {
 				graphics.moveTo(this->getLeft() + 1, this->getTop() + this->checked);
@@ -85,7 +76,6 @@ void RadioList::mousePressed(int x, int y, DWORD button) {
 				putchar('X');
 
 			}
-
 			break;
 		}
 	}

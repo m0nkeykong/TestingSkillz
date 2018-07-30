@@ -1,6 +1,5 @@
 #include "Graphics.h"
 
-//screen ctor
 Graphics::Graphics(DWORD stdHandle)
 	: _console(GetStdHandle(stdHandle)), _background(Color::Black), _foreground(Color::White)
 {
@@ -12,12 +11,11 @@ void Graphics::clearScreen()
 	DWORD d;
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	GetConsoleScreenBufferInfo(_console, &csbi);
-	auto size = csbi.dwSize.X * csbi.dwSize.Y;	//set screen size
-	FillConsoleOutputAttribute(_console, csbi.wAttributes, size, { 0, 0 }, &d); //setting the screen for clear
-	FillConsoleOutputCharacter(_console, L' ', size, { 0, 0 }, &d); //clearing the screen
+	auto size = csbi.dwSize.X * csbi.dwSize.Y;
+	FillConsoleOutputAttribute(_console, csbi.wAttributes, size, { 0, 0 }, &d);
+	FillConsoleOutputCharacter(_console, L' ', size, { 0, 0 }, &d);
 }
 
-//change cursor position on the screen
 void Graphics::moveTo(int x, int y)
 {
 	COORD c;
@@ -68,7 +66,6 @@ void Graphics::setCursorVisibility(bool isVisible)
 	SetConsoleCursorInfo(_console, &cci);
 }
 
-//setting screen foreground and background color
 void Graphics::updateConsoleAttributes()
 {
 	DWORD attributes = 0;

@@ -1,25 +1,27 @@
 #include <vector>
 #include "EventEngine.h"
+#include <algorithm>
+using namespace std;
 
 EventEngine::EventEngine(DWORD input, DWORD output)
 	: _console(GetStdHandle(input)), _graphics(output)
 {
 	GetConsoleMode(_console, &_consoleMode);
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
-	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);	//maximize console;
-
 }
 
 void EventEngine::run(Control &c)
 {
 	for (bool redraw = true;;)
 	{
-		if (redraw)	//redraw after changes
+		if (redraw)
 		{
 			_graphics.clearScreen();
 			_graphics.setCursorVisibility(false);
-			for (size_t p = 0; p < 5; ++p)
-				c.draw(_graphics, 0, 0, p);
+			for (size_t z = 0; z < 5; ++z)
+			{
+				c.draw(_graphics, 0, 0, z);
+			}
 			redraw = false;
 		}
 
@@ -31,20 +33,19 @@ void EventEngine::run(Control &c)
 		case KEY_EVENT:
 		{
 			auto f = Control::getFocus();
-
 			if (f != nullptr && record.Event.KeyEvent.bKeyDown)
 			{
 				auto code = record.Event.KeyEvent.wVirtualKeyCode;
 				auto chr = record.Event.KeyEvent.uChar.AsciiChar;
-				if (code == VK_TAB)	//change control focus - tab click
+				if (code == VK_TAB)	
 					moveFocus(c, f);
 				else
-					f->keyDown(code, chr);	//key pressed on control
+					f->keyDown(code, chr);	
 				redraw = true;
 			}
 			break;
 		}
-		case MOUSE_EVENT:	//mouse event on a control 
+		case MOUSE_EVENT:	
 		{
 			auto button = record.Event.MouseEvent.dwButtonState;
 			auto coord = record.Event.MouseEvent.dwMousePosition;
@@ -77,6 +78,5 @@ void EventEngine::moveFocus(Control &main, Control *focused)
 		if (++it == controls.end())
 			it = controls.begin();
 	while (!(*it)->canGetFocus());
-
 	Control::setFocus(**it);
 }
