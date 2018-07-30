@@ -16,7 +16,7 @@ void Control::setFocus(Control &control) {
 	control.graphics.setCursorVisibility(true);
 	focus = &control;
 	control.setLayer(1);
-	control.SetForeground(Color::Orange);
+	control.SetForeground(Color::Green);
 }
 
 void Control::drawBorder(BorderType border) {

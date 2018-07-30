@@ -10,27 +10,25 @@ Messagebox::Messagebox(int width, int height) {
 	this->showed = false;
 }
 
-void Messagebox::draw(Graphics g, int i, int j, size_t p) {
-
+void Messagebox::draw(Graphics g, int x, int y, size_t z) {
 	graphics.setBackground(this->background);
 	graphics.setForeground(this->foreground);
 	drawBackground();
-	graphics.write(i, j, this->GetTitle());
-	graphics.write(i, j + 2, this->GetText());
+	graphics.write(x, y, this->GetTitle());
+	graphics.write(x, y + 2, this->GetText());
 
-	for (int k = 0; k < this->buttons.size(); ++k) {
-		if (buttons[k]->getShowed() == true) {
-			buttons[k]->draw(graphics, buttons[k]->getLeft(), buttons[k]->getTop(), 0);
-			buttons[k]->drawBorder(buttons[k]->getBorder());
+	for (int i = 0; i < this->buttons.size(); ++i) {
+		if (buttons[i]->getShowed() == true) {
+			buttons[i]->draw(graphics, buttons[i]->getLeft(), buttons[i]->getTop(), 0);
+			buttons[i]->drawBorder(buttons[i]->getBorder());
 		}
 	}
 }
 
 void Messagebox::mousePressed(int x, int y, DWORD button) {
-
-	for (int k = 0; k < this->buttons.size(); ++k) {
-		if (isInside(x, y, this->buttons[k]->getLeft(), this->buttons[k]->getTop(), this->buttons[k]->getWidth(), this->buttons[k]->getHeight())){
-			this->buttons[k]->mousePressed(x, y, button);
+	for (int i = 0; i < this->buttons.size(); ++i) {
+		if (isInside(x, y, this->buttons[i]->getLeft(), this->buttons[i]->getTop(), this->buttons[i]->getWidth(), this->buttons[i]->getHeight())){
+			this->buttons[i]->mousePressed(x, y, button);
 			break;
 		}
 	}
@@ -38,7 +36,6 @@ void Messagebox::mousePressed(int x, int y, DWORD button) {
 
 //add button to display
 void Messagebox::addButton(Button &button, int left, int top) {
-
 	this->buttons.push_back(&button);
 	button.setLeft(this->getLeft() + left);
 	button.setTop(this->getTop() + top);
