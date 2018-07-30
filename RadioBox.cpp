@@ -1,8 +1,8 @@
 #pragma once
-#include "RadioList.h"
+#include "RadioBox.h"
 
 
-RadioList::RadioList(int _height, int _width, vector<string> _options)
+RadioBox::RadioBox(int _height, int _width, vector<string> _options)
 	:CheckList(_height, _width, _options) {
 
 	this->height = _height;
@@ -14,7 +14,7 @@ RadioList::RadioList(int _height, int _width, vector<string> _options)
 }
 
 
-void RadioList::draw(Graphics g, int i, int j, size_t p) {
+void RadioBox::draw(Graphics g, int i, int j, size_t p) {
 	graphics.setBackground(this->background);
 	graphics.setForeground(this->foreground);
 
@@ -34,7 +34,7 @@ void RadioList::draw(Graphics g, int i, int j, size_t p) {
 	graphics.setBackground(Color::Black);
 }
 
-void  RadioList::keyDown(int keyCode, char character) {
+void  RadioBox::keyDown(int keyCode, char character) {
 
 	this->graphics.setCursorVisibility(true);
 
@@ -64,7 +64,7 @@ void  RadioList::keyDown(int keyCode, char character) {
 	}
 }
 
-void RadioList::mousePressed(int x, int y, DWORD button) {
+void RadioBox::mousePressed(int x, int y, DWORD button) {
 	for (int i = 0; i < this->getHeight(); i++){
 		if (x == (this->getLeft() + 1) && y == (this->getTop() + i)) {
 			graphics.moveTo(this->getLeft() + 1, this->getTop() + i);
@@ -82,11 +82,11 @@ void RadioList::mousePressed(int x, int y, DWORD button) {
 };
 
 
-size_t  RadioList::GetSelectedIndex() {
+size_t  RadioBox::GetSelectedIndex() {
 	return this->checked;
 };
 
-void  RadioList::SetSelectedIndex(size_t index) {
+void  RadioBox::SetSelectedIndex(size_t index) {
 	this->checked = index;
 };
 

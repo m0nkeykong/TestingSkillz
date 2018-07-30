@@ -2,7 +2,7 @@
 #include "Control.h"
 #include "CheckList.h"
 
-class RadioList : public CheckList {
+class RadioBox : public CheckList {
 
 private:
 
@@ -10,7 +10,7 @@ private:
 
 public:
 
-	RadioList(int _height, int _width, vector<string> _options);
+	RadioBox(int _height, int _width, vector<string> _options);
 	void draw(Graphics g, int i, int j, size_t p);
 	void keyDown(int keyCode, char character);
 	void mousePressed(int x, int y, DWORD button);

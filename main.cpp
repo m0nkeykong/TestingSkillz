@@ -8,7 +8,7 @@
 #include "CheckList.h"
 #include "Button.h"
 #include "NumericBox.h"
-#include "RadioList.h"
+#include "RadioBox.h"
 #include "TextBox.h"
 #include "ComboBox.h"
 #include "MessageBox.h"
@@ -76,7 +76,7 @@ void main() {
 	clInterests.SelectIndex(1);
 	NumericBox nAge(15, 18, 120);
 	nAge.SetValue(23);
-	RadioList rSex(2, 15, { "Male", "Female" });
+	RadioBox rSex(2, 15, { "Male", "Female" });
 	ComboBox cCountry(20, { "Israel", "Great Britain", "United States" });
 	cCountry.SetSelectedIndex(1);
 	Messagebox results(30, 10);
