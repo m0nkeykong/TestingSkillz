@@ -2,9 +2,9 @@
 #include <vector>
 #include "Graphics.h"
 
-enum class BorderType { Single, Double, None };
-enum class ForegroundColor { Red, Blue, Green, Purple, Teal, Yellow, White, Black };
-enum class BackgroundColor { Red, Blue, Green, Purple, Teal, Yellow, White, Black };
+enum class BorderType		{ Single, Double, None };
+enum class ForegroundColor	{ Red, Blue, Green, Purple, Yellow, White, Black };
+enum class BackgroundColor	{ Red, Blue, Green, Purple, Yellow, White, Black };
 
 class Control {
 
@@ -18,28 +18,28 @@ protected:
 	Color foreground = Color::White, background = Color::Black;
 
 public:
-	Control()								{}
-	~Control()								{}
-	void Show()								{ this->showed = true; }
-	void Hide()								{ this->showed = false; }
-	void setLeft(int left)					{ this->left = left; }
-	void setTop(int top)					{ this->top = top; }
-	void setLayer(size_t layer)				{ this->layer = layer; }
-	void SetBorder(BorderType border)		{ this->border = border; }
+	Control()										{}
+	~Control()										{}
+	inline void Show()								{ this->showed = true; }
+	inline void Hide()								{ this->showed = false; }
+	inline void setLeft(int left)					{ this->left = left; }
+	inline void setTop(int top)						{ this->top = top; }
+	inline void setLayer(size_t layer)				{ this->layer = layer; }
+	inline void SetBorder(BorderType border)		{ this->border = border; }
 	void drawBorder(BorderType);
 	void drawBackground();
-	int getLeft()							{ return this->left; }
-	int getTop()							{ return this->top; }
-	int getWidth()							{ return this->width; }
-	int getHeight()							{ return this->height; }
-	static Control* getFocus()				{ return focus; }
+	inline int getLeft()							{ return this->left; }
+	inline int getTop()								{ return this->top; }
+	inline int getWidth()							{ return this->width; }
+	inline int getHeight()							{ return this->height; }
+	inline static Control* getFocus()				{ return focus; }
 	static void setFocus(Control&);
-	bool getShowed()						{ return this->showed; }
-	size_t getLayer()						{ return this->layer; }
-	BorderType getBorder()					{ return this->border; }
-	virtual void setValue(int)				{}
-	virtual void setWidth(int width)		{ this->width = width; }
-	virtual void SetBackground(Color color) { background = color; }
+	inline bool getShowed()							{ return this->showed; }
+	inline size_t getLayer()						{ return this->layer; }
+	inline BorderType getBorder()					{ return this->border; }
+	virtual void setValue(int)						{}
+	inline virtual void setWidth(int width)			{ this->width = width; }
+	inline virtual void SetBackground(Color color)	{ background = color; }
 	virtual void SetForeground(Color);
 	virtual void getAllControls(vector <Control*>*) {}
 	virtual void draw(Graphics, int, int, size_t) = 0;

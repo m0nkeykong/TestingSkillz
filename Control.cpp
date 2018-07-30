@@ -1,10 +1,8 @@
 #include "Control.h"
 #include <iostream>
 #include <vector>
-#define VNAME(x) #x
 
 using namespace std;
-
 Control* Control::focus = 0;
 
 void Control::setFocus(Control &control) {
@@ -22,14 +20,11 @@ void Control::setFocus(Control &control) {
 }
 
 void Control::drawBorder(BorderType border) {
-	int i = this->getLeft() - 1;
-	int j = this->getTop() - 1;
+	int i = this->getLeft() - 1, j = this->getTop() - 1;
 
 	//drawing the control's border with ascii hex codes
 	switch (border) {
-
 	case BorderType::Double:
-
 		graphics.setBackground(this->background);
 		graphics.setForeground(this->foreground);
 
@@ -50,11 +45,9 @@ void Control::drawBorder(BorderType border) {
 		break;
 
 	case BorderType::None:
-
 		break;
 
 	case BorderType::Single:
-
 		graphics.write(i, j, "\xDA");
 		for (int k = 0; k < this->width; ++k) {
 			graphics.write("\xC4");
