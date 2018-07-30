@@ -37,7 +37,7 @@ void RadioBox::keyDown(int keyCode, char character) {
 	this->graphics.setCursorVisibility(true);
 
 	// Scanning all the options and selecting the selcted one
-	for (int i = 0; i < this->options.size(); i++){
+	for (int i = 0; i < this->options.size(); i++) {
 		this->graphics.moveTo(this->getLeft() + 1, this->getTop() + i);
 		int c = 0;
 		c = getchar();
@@ -45,7 +45,7 @@ void RadioBox::keyDown(int keyCode, char character) {
 			if (c == VK_TAB) break;
 			this->toCheck = 1;
 			putchar('X');
-			for (int j = 0; j < this->options.size(); j++){
+			for (int j = 0; j < this->options.size(); j++) {
 				if (i != j) {
 					this->toCheck = 0;
 					this->graphics.moveTo(this->getLeft() + 1, this->getTop() + j);
@@ -54,23 +54,24 @@ void RadioBox::keyDown(int keyCode, char character) {
 				break;
 			}
 			break;
-		} 
-		while (c != VK_TAB);
+		} while (c != VK_TAB);
 	}
 }
 
 void RadioBox::mousePressed(int a, int b, DWORD button) {
 	// Changing the box value if mouse prrssed: "X" or " "
-	for (int i = 0; i < this->getHeight(); i++){
+	for (int i = 0; i < this->getHeight(); i++) {
 		if (a == (this->getLeft() + 1) && b == (this->getTop() + i)) {
 			this->graphics.moveTo(this->getLeft() + 1, this->getTop() + i);
 
 			if (this->toCheck != i) {
 				this->graphics.moveTo(this->getLeft() + 1, this->getTop() + this->toCheck);
+
 				// PUT " " 
 				putchar(' ');
 				this->toCheck = i;
 				this->graphics.moveTo(this->getLeft() + 1, this->getTop() + i);
+
 				// PUT "X"
 				putchar('X');
 			}

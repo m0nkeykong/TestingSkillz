@@ -15,42 +15,31 @@
 
 using namespace std;
 
-// Listeners for the buttons used.
-struct SubmitListener : public MouseListener
-{
+// Listeners for message box buttons
+struct SubmitListener : public MouseListener {
 private:
 	Control & _c;
-
 public:
-
 	SubmitListener(Control &c) : _c(c) { }
-
-	void  MousePressed(Button &b, int x, int y, bool isLeft){
+	void  MousePressed(Button &b, int x, int y, bool isLeft) {
 		_c.SetBackground(Color::Green);
 		_c.Show();
 	}
-
 };
 
-struct bOKListener : public MouseListener
-{
+struct yesBtnListener : public MouseListener {
 private:
 	Control & _c;
-
 public:
-
-	bOKListener(Control &c) : _c(c) { }
-
-	void  MousePressed(Button &b, int x, int y, bool isLeft){
+	yesBtnListener(Control &c) : _c(c) { }
+	void  MousePressed(Button &b, int x, int y, bool isLeft) {
 		_c.SetBackground(Color::Black);
 		_c.Hide();
 	}
-
 };
 
 // Main function. Creates and sets controls, adds them to panel and runs event engine on panel.
 int main() {
-
 	Label labelAlias(20);
 	labelAlias.SetValue("New Alias: ");
 	Label labelLocation(20);
@@ -63,24 +52,24 @@ int main() {
 	labelAdditions.SetValue("Additions:");
 	Label labelAge(20);
 	labelAge.SetValue("Alias Age:");
-	
-	TextBox textName(20);
-	TextBox textLocation(25);
-	textLocation.SetValue("Abba show, London");
+
+	TextBox textboxName(20);
+	TextBox texboxtLocation(25);
+	texboxtLocation.SetValue("Abba show, London");
 
 	Button buttonSubmit(10);
-	buttonSubmit.SetValue("Submit");
+	buttonSubmit.SetValue("Travel");
 	CheckList checklistInterests(3, 15, { "Money", "Drugs", "Fame" });
 	checklistInterests.SelectIndex(1);
 	NumericBox numBoxAge(15, 18, 120);
-	numBoxAge.SetValue(23);
+	numBoxAge.SetValue(27);
 	RadioBox radioSex(3, 15, { "Male", "Female", "Yes please" });
 	ComboBox comboxYear(20, { "70's", "80's", "90's" });
 	comboxYear.SetSelectedIndex(1);
 
 	Messagebox sbmt(30, 10);
 	sbmt.SetTitle("Courdenence Occurred");
-	sbmt.SetText("Prepare for Time Travel !");
+	sbmt.SetText("Prepare for Time Travel!");
 
 	comboxYear.SetBorder(BorderType::Double);
 	labelAlias.SetForeground(Color::Cyan);
@@ -90,32 +79,34 @@ int main() {
 	labelAdditions.SetForeground(Color::Cyan);
 	labelAge.SetForeground(Color::Cyan);
 
-	/*buttonSubmit.AddListener(SubmitListener::SubmitListener(sbmt));
-	Button bOK(5);
-	bOK.SetValue("OK");
-	bOK.SetBackground(Color::Green);
-	bOK.AddListener(bOKListener::bOKListener(sbmt));
-	sbmt.addButton(bOK, 10, 10);*/
+	SubmitListener submitListener = SubmitListener::SubmitListener(sbmt);
+	buttonSubmit.AddListener(submitListener);
+	Button buttonYes(6);
+	buttonYes.SetValue("Launch");
+	buttonYes.SetBackground(Color::Green);
+	yesBtnListener buttonYesListener = yesBtnListener::yesBtnListener(sbmt);
+	buttonYes.AddListener(buttonYesListener);
+	sbmt.addButton(buttonYes, 10, 10);
 
-	Panel main(27, 55);
-	main.addControl(labelAlias, 1, 2);
-	main.addControl(labelLocation, 1, 5);
-	main.addControl(labelYear, 1, 8);
-	main.addControl(labelSex, 1, 11);
-	main.addControl(labelAdditions, 1, 15);
-	main.addControl(labelAge, 1, 20);
-	main.addControl(textName, 25, 2);
-	main.addControl(textLocation, 25, 5);
-	main.addControl(comboxYear, 25, 8);
-	main.addControl(radioSex, 25, 11);
-	main.addControl(checklistInterests, 25, 15);
-	main.addControl(numBoxAge, 25, 20);
-	main.addControl(buttonSubmit, 25, 25);
-	main.addControl(sbmt, 5, 5);
+	Panel mainPanel(27, 55);
+	mainPanel.addControl(labelAlias, 1, 2);
+	mainPanel.addControl(labelLocation, 1, 5);
+	mainPanel.addControl(labelYear, 1, 8);
+	mainPanel.addControl(labelSex, 1, 11);
+	mainPanel.addControl(labelAdditions, 1, 15);
+	mainPanel.addControl(labelAge, 1, 20);
+	mainPanel.addControl(textboxName, 25, 2);
+	mainPanel.addControl(texboxtLocation, 25, 5);
+	mainPanel.addControl(comboxYear, 25, 8);
+	mainPanel.addControl(radioSex, 25, 11);
+	mainPanel.addControl(checklistInterests, 25, 15);
+	mainPanel.addControl(numBoxAge, 25, 20);
+	mainPanel.addControl(buttonSubmit, 25, 25);
+	mainPanel.addControl(sbmt, 5, 5);
 
-	Control::setFocus(textName);
+	Control::setFocus(textboxName);
 	EventEngine engine;
-	engine.run(main);
+	engine.run(mainPanel);
 
 	return 1;
 }
