@@ -18,13 +18,13 @@ void ComboBox::draw(Graphics g, int x, int y, size_t z) {
 	switch (this->isOpened) {
 	case false:	//combobox closed
 		graphics.write(x + this->width - 3, y, "\xBA"); // ||  border symbol - ascii table
-		graphics.write(x + this->width - 1, y, "V");
+		graphics.write(x + this->width - 1, y, "\xFB");
 		graphics.write(x + 1, y, this->options[this->GetSelectedIndex()]);
 		break;
 
 	case true:	//combobox opened
 		graphics.write(x + this->width - 3, y, "\xBA"); // || border symbol - ascii table
-		graphics.write(x + this->width - 1, y, "V");
+		graphics.write(x + this->width - 1, y, "\xFB");
 		graphics.write(x + 1, y, this->options[this->GetSelectedIndex()]); //write the text of selected option 
 
 		for (int i = 0; i < options.size(); ++i) {
