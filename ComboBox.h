@@ -16,5 +16,4 @@ public:
 	virtual void draw(Graphics, int, int, size_t);
 	virtual void keyDown(int, char);
 	virtual void mousePressed(int, int, DWORD);
-
 };

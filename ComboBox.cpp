@@ -11,7 +11,6 @@ ComboBox::ComboBox(int width, vector<string> options) {
 }
 
 void ComboBox::draw(Graphics g, int i, int j, size_t p) {
-
 	graphics.setBackground(this->background);
 	graphics.setForeground(this->foreground);
 	drawBackground();
@@ -53,7 +52,6 @@ void ComboBox::keyDown(int keyCode, char character) {
 		c = getchar();
 
 		if (c == VK_UP) {
-
 			if (position <= this->getTop() + 1) {}
 			else {
 				--position;
@@ -63,7 +61,6 @@ void ComboBox::keyDown(int keyCode, char character) {
 		}
 
 		if (c == VK_DOWN) {
-
 			if (position >= this->getTop() + this->options.size() + 1) {}
 			else {
 				++position;
