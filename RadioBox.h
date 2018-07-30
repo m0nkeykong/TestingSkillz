@@ -3,19 +3,14 @@
 #include "CheckList.h"
 
 class RadioBox : public CheckList {
-
 private:
-
-	size_t checked = 0;
+	size_t toCheck = 0;
 
 public:
-
-	RadioBox(int _height, int _width, vector<string> _options);
-	void draw(Graphics g, int i, int j, size_t p);
-	void keyDown(int keyCode, char character);
-	void mousePressed(int x, int y, DWORD button);
-	size_t GetSelectedIndex();
-	void SetSelectedIndex(size_t index);
-
-
+	RadioBox(int, int, vector<string>);
+	void draw(Graphics, int, int, size_t);
+	void keyDown(int, char);
+	void mousePressed(int, int, DWORD);
+	inline size_t GetSelectedIndex() { return this->toCheck; }
+	inline void SetSelectedIndex(size_t i) { this->toCheck = i; }
 };
