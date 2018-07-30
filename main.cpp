@@ -15,30 +15,30 @@
 
 using namespace std;
 
-// Listeners for message box buttons
+//listener for the 'SUBMITION' button
 struct SubmitListener : public MouseListener {
 private:
 	Control & _c;
 public:
 	SubmitListener(Control &c) : _c(c) { }
 	void  MousePressed(Button &b, int x, int y, bool isLeft) {
-		_c.SetBackground(Color::Green);
+		_c.SetBackground(Color::Blue);
 		_c.Show();
 	}
 };
 
+//listener for the 'YES' button
 struct yesBtnListener : public MouseListener {
 private:
 	Control & _c;
 public:
 	yesBtnListener(Control &c) : _c(c) { }
-	void  MousePressed(Button &b, int x, int y, bool isLeft) {
+	void  MousePressed(Button &b, int x, int y, bool isLeft){
 		_c.SetBackground(Color::Black);
 		_c.Hide();
 	}
 };
 
-// Main function. Creates and sets controls, adds them to panel and runs event engine on panel.
 int main() {
 	Label labelAlias(20);
 	labelAlias.SetValue("New Alias: ");
@@ -52,12 +52,12 @@ int main() {
 	labelAdditions.SetValue("Additions:");
 	Label labelAge(20);
 	labelAge.SetValue("Alias Age:");
-
+	
 	TextBox textboxName(20);
 	TextBox texboxtLocation(25);
 	texboxtLocation.SetValue("Abba show, London");
 
-	Button buttonSubmit(10);
+	Button buttonSubmit(6);
 	buttonSubmit.SetValue("Travel");
 	CheckList checklistInterests(3, 15, { "Money", "Drugs", "Fame" });
 	checklistInterests.SelectIndex(1);
@@ -67,7 +67,7 @@ int main() {
 	ComboBox comboxYear(20, { "70's", "80's", "90's" });
 	comboxYear.SetSelectedIndex(1);
 
-	Messagebox sbmt(30, 10);
+	Messagebox sbmt(30, 7);
 	sbmt.SetTitle("Courdenence Occurred");
 	sbmt.SetText("Prepare for Time Travel!");
 
@@ -83,10 +83,10 @@ int main() {
 	buttonSubmit.AddListener(submitListener);
 	Button buttonYes(6);
 	buttonYes.SetValue("Launch");
-	buttonYes.SetBackground(Color::Green);
+	buttonYes.SetBackground(Color::Blue);
 	yesBtnListener buttonYesListener = yesBtnListener::yesBtnListener(sbmt);
 	buttonYes.AddListener(buttonYesListener);
-	sbmt.addButton(buttonYes, 10, 10);
+	sbmt.addButton(buttonYes, 28, 9);
 
 	Panel mainPanel(27, 55);
 	mainPanel.addControl(labelAlias, 1, 2);
@@ -102,7 +102,7 @@ int main() {
 	mainPanel.addControl(checklistInterests, 25, 15);
 	mainPanel.addControl(numBoxAge, 25, 20);
 	mainPanel.addControl(buttonSubmit, 25, 25);
-	mainPanel.addControl(sbmt, 5, 5);
+	mainPanel.addControl(sbmt, 17, 5);
 
 	Control::setFocus(textboxName);
 	EventEngine engine;

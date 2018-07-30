@@ -4,7 +4,7 @@
 
 NumericBox::NumericBox(int width, int min, int max) {
 	this->width = width;
-	this->height = 10;
+	this->height = 3;
 	this->min = min;
 	this->max = max;
 	this->showed = true;
