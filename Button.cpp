@@ -9,10 +9,10 @@ Button::Button(int width) {
 	this->value = "Submit";
 }
 
-void Button::draw(Graphics grph, int i, int j, size_t p) {
+void Button::draw(Graphics g, int x, int y, size_t z) {
 	graphics.setBackground(this->background);
 	graphics.setForeground(this->foreground);
 	drawBackground();
-	graphics.write(i, j, this->GetValue());
+	graphics.write(x, y, this->GetValue());
 }
 
