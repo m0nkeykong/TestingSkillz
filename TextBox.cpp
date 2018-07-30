@@ -3,76 +3,47 @@
 
 using namespace std;
 
-TextBox::TextBox(int _width) {
-	this->width = _width;
+//init TextBox
+TextBox::TextBox(int width) {
+	this->width = width;
 	this->height = 1;
 	this->border = BorderType::Single;
 	this->showed = true;
 }
 
-void TextBox::SetValue(string _value) {
-	this->value = _value;
+//draw textbox method
+void TextBox::draw(Graphics g, int x, int y, size_t z) {
+	g.setBackground(this->background);
+	g.setForeground(this->foreground);
+	g.write(x, y, this->GetValue());
+	g.setForeground(Color::White);
+	g.setBackground(Color::Black);
 }
 
-string TextBox::GetValue() {
-	return this->value;
-}
-
-bool TextBox::canGetFocus() {
-	return true;
-}
-
-int TextBox::getWidth() {
-	return this->width;
-}
-
-int TextBox::getHeight() {
-	return this->height;
-}
-
-
-void TextBox::draw(Graphics graphics, int i, int j, size_t p) {
-
-	graphics.setBackground(this->background);
-	graphics.setForeground(this->foreground);
-	graphics.write(i, j, this->GetValue());
-	graphics.setForeground(Color::White);
-	graphics.setBackground(Color::Black);
-
-}
-
-void TextBox::keyDown(int keyCode, char character) {
-
+//handle key press inside the textbox
+void TextBox::keyDown(int keyCode, char c) {
 	int position = this->getLeft() + this->GetValue().size();
-	if (this->GetValue().empty()) {
+	
+	if (this->GetValue().empty())
 		graphics.moveTo(position, this->getTop());
-	}
-	else {
+	else
 		graphics.moveTo(position - 1, this->getTop());
 
-	}
-
 	this->graphics.setCursorVisibility(true);
-
 	string input = this->GetValue();
-	int c;
-	int i = 0;
+	int _char, i = 0;
 
 	while (1) {
-
-
-
-		c = getchar();
+		_char = getchar();
 		position++;
 
-		if (position > this->getLeft() + this->getWidth() && c != VK_BACK) {
+		if (position > this->getLeft() + this->getWidth() && _char != VK_BACK)
 			break;
-		}
 
-		input.push_back(c);
-		putchar(c);
+		input.push_back(_char);
+		putchar(_char);
 
-		if (c == VK_BACK) {
+		if (_char == VK_BACK) {
 			input.pop_back();
 			if (input.empty() == false) {
 				input.pop_back();
@@ -81,27 +52,21 @@ void TextBox::keyDown(int keyCode, char character) {
 				putchar(' ');
 				graphics.moveTo(position, this->getTop());
 			}
-			else {
+			else
 				position -= 0;
-			}
-
 		}
 
-
-		if (c == VK_TAB) {
+		if (_char == VK_TAB) {
 			input.pop_back();
 			break;
 		}
-
-
-
 	}
 
 	this->SetValue(input);
-
 }
 
-void TextBox::mousePressed(int x, int y, DWORD button) {
+//handle mouse press inside textbox
+void TextBox::mousePressed(int x, int y, DWORD btn) {
 	this->keyDown(1, 'v');
 };
 

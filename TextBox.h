@@ -1,25 +1,21 @@
-#pragma once
-
+#pragma 
 #include "Control.h"
-
 
 class TextBox : public Control {
 
 private:
 	string value = "";
 
-
-
 public:
-	TextBox(int _width);
-	void SetValue(string _value);
-	string GetValue();
-	bool canGetFocus();
-	int getWidth();
-	int getHeight();
-	void draw(Graphics g, int i, int j, size_t p);
-	void keyDown(int keyCode, char character);
-	void mousePressed(int x, int y, DWORD button);
-
+	TextBox(int);
+	void SetValue(string _value)			{ this->value = _value; }
+	string GetValue()						{ return this->value; }
+	bool canGetFocus()						{ return true; }
+	int getWidth()							{ return this->width; }
+	int getHeight()							{ return this->height; }
+	void draw(Graphics, int, int, size_t);
+	void keyDown(int, char);
+	void mousePressed(int, int, DWORD);
 };
+
 

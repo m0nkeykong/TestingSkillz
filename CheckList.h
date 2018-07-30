@@ -8,12 +8,12 @@ protected:
 	vector<size_t> checked;
 
 public:
-	CheckList(int _height, int _width, vector<string> _options);
-	vector<size_t> GetSelectedIndices();
-	bool canGetFocus();
-	void draw(Graphics g, int i, int j, size_t p);
-	void keyDown(int keyCode, char character);
-	void mousePressed(int x, int y, DWORD button);
-	void SelectIndex(size_t index);
-	void DeselectIndex(size_t index);
+	CheckList(int, int, vector<string>);
+	vector<size_t> GetSelectedIndices()			{ return this->checked; }
+	bool canGetFocus()							{ return true; }
+	void draw(Graphics, int, int, size_t);
+	void keyDown(int, char);
+	void mousePressed(int, int, DWORD);
+	void SelectIndex(size_t index)				{ this->checked[index] = 1; }
+	void DeselectIndex(size_t index)			{ this->checked[index] = 0; }
 };
