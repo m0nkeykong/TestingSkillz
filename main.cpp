@@ -25,8 +25,7 @@ public:
 
 	SubmitListener(Control &c) : _c(c) { }
 
-	void  MousePressed(Button &b, int x, int y, bool isLeft)
-	{
+	void  MousePressed(Button &b, int x, int y, bool isLeft){
 		_c.SetBackground(Color::Green);
 		_c.Show();
 	}
@@ -42,89 +41,83 @@ public:
 
 	bOKListener(Control &c) : _c(c) { }
 
-	void  MousePressed(Button &b, int x, int y, bool isLeft)
-	{
+	void  MousePressed(Button &b, int x, int y, bool isLeft){
 		_c.SetBackground(Color::Black);
 		_c.Hide();
-
 	}
 
 };
 
 // Main function. Creates and sets controls, adds them to panel and runs event engine on panel.
-void main() {
+int main() {
 
-	Label lName(20);
-	lName.SetValue("Name: ");
+	Label labelAlias(20);
+	labelAlias.SetValue("New Alias: ");
+	Label labelLocation(20);
+	labelLocation.SetValue("Distinct Location:");
+	Label labelYear(20);
+	labelYear.SetValue("Year:");
+	Label labelSex(20);
+	labelSex.SetValue("Sex:");
+	Label labelAdditions(20);
+	labelAdditions.SetValue("Additions:");
+	Label labelAge(20);
+	labelAge.SetValue("Alias Age:");
+	
+	TextBox textName(20);
+	TextBox textLocation(25);
+	textLocation.SetValue("Abba show, London");
 
-	Label lAddress(20);
-	lAddress.SetValue("Address:");
-	Label lCountry(20);
-	lCountry.SetValue("Counrty:");
-	Label lSex(20);
-	lSex.SetValue("Sex:");
-	Label lInterests(20);
-	lInterests.SetValue("Interests:");
-	Label lAge(20);
-	lAge.SetValue("Age:");
-	TextBox tName(20);
-	TextBox tAddress(25);
-	tAddress.SetValue("221B Baker Street, London");
-	Button bSubmit(10);
-	bSubmit.SetValue("Submit");
-	CheckList clInterests(3, 15, { "Sports", "Books", "Movies" });
-	clInterests.SelectIndex(1);
-	NumericBox nAge(15, 18, 120);
-	nAge.SetValue(23);
-	RadioBox rSex(2, 15, { "Male", "Female" });
-	ComboBox cCountry(20, { "Israel", "Great Britain", "United States" });
-	cCountry.SetSelectedIndex(1);
-	Messagebox results(30, 10);
-	results.SetTitle("SUBMIT");
-	results.SetText("Thank you! Goodbye.");
+	Button buttonSubmit(10);
+	buttonSubmit.SetValue("Submit");
+	CheckList checklistInterests(3, 15, { "Money", "Drugs", "Fame" });
+	checklistInterests.SelectIndex(1);
+	NumericBox numBoxAge(15, 18, 120);
+	numBoxAge.SetValue(23);
+	RadioBox radioSex(3, 15, { "Male", "Female", "Yes please" });
+	ComboBox comboxYear(20, { "70's", "80's", "90's" });
+	comboxYear.SetSelectedIndex(1);
 
+	Messagebox sbmt(30, 10);
+	sbmt.SetTitle("Courdenence Occurred");
+	sbmt.SetText("Prepare for Time Travel !");
 
+	comboxYear.SetBorder(BorderType::Double);
+	labelAlias.SetForeground(Color::Cyan);
+	labelLocation.SetForeground(Color::Cyan);
+	labelYear.SetForeground(Color::Cyan);
+	labelSex.SetForeground(Color::Cyan);
+	labelAdditions.SetForeground(Color::Cyan);
+	labelAge.SetForeground(Color::Cyan);
 
-
-	cCountry.SetBorder(BorderType::Double);
-	lName.SetForeground(Color::Blue);
-	lAddress.SetForeground(Color::Orange);
-	lCountry.SetForeground(Color::Green);
-	lSex.SetForeground(Color::Purple);
-	lInterests.SetForeground(Color::Cyan);
-	lAge.SetForeground(Color::Red);
-
-	/*bSubmit.AddListener(SubmitListener::SubmitListener(results));
+	/*buttonSubmit.AddListener(SubmitListener::SubmitListener(sbmt));
 	Button bOK(5);
 	bOK.SetValue("OK");
 	bOK.SetBackground(Color::Green);
-	bOK.AddListener(bOKListener::bOKListener(results));
-	results.addButton(bOK, 10, 10);*/
-
-
+	bOK.AddListener(bOKListener::bOKListener(sbmt));
+	sbmt.addButton(bOK, 10, 10);*/
 
 	Panel main(27, 55);
-	main.addControl(lName, 1, 2);
-	main.addControl(lAddress, 1, 5);
-	main.addControl(lCountry, 1, 8);
-	main.addControl(lSex, 1, 11);
-	main.addControl(lInterests, 1, 15);
-	main.addControl(lAge, 1, 20);
-	main.addControl(tName, 25, 2);
-	main.addControl(tAddress, 25, 5);
-	main.addControl(cCountry, 25, 8);
-	main.addControl(rSex, 25, 11);
-	main.addControl(clInterests, 25, 15);
-	main.addControl(nAge, 25, 20);
-	main.addControl(bSubmit, 25, 25);
-	main.addControl(results, 5, 5);
+	main.addControl(labelAlias, 1, 2);
+	main.addControl(labelLocation, 1, 5);
+	main.addControl(labelYear, 1, 8);
+	main.addControl(labelSex, 1, 11);
+	main.addControl(labelAdditions, 1, 15);
+	main.addControl(labelAge, 1, 20);
+	main.addControl(textName, 25, 2);
+	main.addControl(textLocation, 25, 5);
+	main.addControl(comboxYear, 25, 8);
+	main.addControl(radioSex, 25, 11);
+	main.addControl(checklistInterests, 25, 15);
+	main.addControl(numBoxAge, 25, 20);
+	main.addControl(buttonSubmit, 25, 25);
+	main.addControl(sbmt, 5, 5);
 
-
-
-	Control::setFocus(tName);
+	Control::setFocus(textName);
 	EventEngine engine;
 	engine.run(main);
 
+	return 1;
 }
 
 
