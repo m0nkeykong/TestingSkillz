@@ -126,7 +126,7 @@
     <ClCompile Include="MessageBox.cpp" />
     <ClCompile Include="NumericBox.cpp" />
     <ClCompile Include="Panel.cpp" />
-    <ClCompile Include="RadioList.cpp" />
+    <ClCompile Include="RadioBox.cpp" />
     <ClCompile Include="TextBox.cpp" />
   </ItemGroup>
   <ItemGroup>
